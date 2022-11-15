@@ -1,4 +1,6 @@
 import countries from '../../countries.json';
+import './CountriesList.css';
+import { Link } from 'react-router-dom';
 
 export default function CountriesList() {
   //console.log(countries);
@@ -8,15 +10,16 @@ export default function CountriesList() {
     // key é um identificador para tornar cada elemento único
     return (
       <div className="col-5" key={index}>
-        <div className="list-group">
-          {/* <img src="https://flagpedia.net/data/flags/icon/72x54/br.png" /> */}
-          <a
-            className="list-group-item list-group-item-action"
-            href={country.alpha3Code}
-          >
-            {country.alpha2Code} {country.name.official}
-          </a>
-        </div>
+        <Link to={country.alpha3Code} className="list-group">
+          <img
+            className="smallFlags"
+            src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`}
+            alt=""
+          />
+          <p>
+            {country.alpha2Code} {country.name.common}
+          </p>
+        </Link>
       </div>
     );
   });
